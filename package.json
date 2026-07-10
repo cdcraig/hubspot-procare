@@ -1,0 +1,11 @@
+{
+  "name": "hubspot-procare-proposal",
+  "private": true,
+  "description": "Smartify proposal landing page — HubSpot → ProCare automation",
+  "scripts": {
+    "start": "serve -s . -l ${PORT:-3000}"
+  },
+  "dependencies": {
+    "serve": "^14"
+  }
+}

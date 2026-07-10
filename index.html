@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Smartify — HubSpot → ProCare Automation Proposal</title>
+<meta name="description" content="A fully managed pipeline that turns every HubSpot form submission into a completed ProCare Connect registration — automatically, hands-free." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+<style>
+  /* ============================================================
+     To edit PRICING: search for data-price="build" / data-price="monthly"
+     in the Pricing section below and change the dollar amounts inline.
+     To add a CLIENT NAME: edit the eyebrow / hero copy in the HTML.
+     ============================================================ */
+  :root {
+    /* Brand */
+    --navy-900: #0a0f1c;
+    --navy-800: #0e1626;
+    --navy-700: #131f36;
+    --card: #131d33;
+    --border: #22304f;
+    --cyan: #22d3ee;
+    --cyan-bright: #38e0f5;
+    --cyan-dim: rgba(34, 211, 238, 0.12);
+    --white: #f5f8ff;
+    --muted: #93a3c4;
+    --muted-2: #6d7d9e;
+    --radius: 16px;
+    --maxw: 940px;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+  body {
+    font-family: "Inter", system-ui, -apple-system, sans-serif;
+    background: var(--navy-900);
+    color: var(--white);
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+  h1, h2, h3, .brand { font-family: "Space Grotesk", "Inter", sans-serif; letter-spacing: -0.02em; }
+  a { color: var(--cyan); text-decoration: none; }
+
+  .wrap { width: 100%; max-width: var(--maxw); margin: 0 auto; padding: 0 22px; }
+  .eyebrow {
+    display: inline-block; font-size: 12px; font-weight: 600; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--cyan); background: var(--cyan-dim);
+    padding: 6px 12px; border-radius: 999px; margin-bottom: 20px;
+  }
+
+  /* ---------- Nav ---------- */
+  header.nav {
+    position: sticky; top: 0; z-index: 50;
+    background: rgba(10, 15, 28, 0.82); backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+  .nav-inner { display: flex; align-items: center; justify-content: space-between; height: 62px; }
+  .brand { font-weight: 700; font-size: 20px; color: var(--white); display: flex; align-items: center; gap: 9px; }
+  .brand .dot { width: 10px; height: 10px; border-radius: 50%; background: var(--cyan); box-shadow: 0 0 14px 2px var(--cyan); }
+  .brand .ai { color: var(--cyan); }
+  .nav-cta {
+    font-family: "Space Grotesk", sans-serif; font-size: 14px; font-weight: 600; color: var(--navy-900);
+    background: var(--cyan); padding: 9px 18px; border-radius: 999px; transition: transform .15s, box-shadow .15s;
+  }
+  .nav-cta:hover { transform: translateY(-1px); box-shadow: 0 6px 20px rgba(34,211,238,.35); }
+
+  /* ---------- Hero ---------- */
+  .hero { position: relative; padding: 74px 0 64px; text-align: center; overflow: hidden; }
+  .hero::before {
+    content: ""; position: absolute; top: -30%; left: 50%; transform: translateX(-50%);
+    width: 760px; height: 760px; max-width: 130vw;
+    background: radial-gradient(circle, rgba(34,211,238,.16), transparent 62%);
+    pointer-events: none;
+  }
+  .hero h1 { position: relative; font-size: clamp(30px, 7vw, 54px); font-weight: 700; line-height: 1.08; }
+  .hero h1 .grad {
+    background: linear-gradient(100deg, var(--cyan-bright), #7c9bff);
+    -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+  }
+  .hero p.sub { position: relative; max-width: 620px; margin: 22px auto 0; font-size: clamp(16px, 2.3vw, 19px); color: var(--muted); }
+  .hero .flow-mini { position: relative; margin: 30px auto 34px; display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; }
+  .chip {
+    font-size: 13px; font-weight: 600; color: var(--white); background: var(--card);
+    border: 1px solid var(--border); padding: 8px 14px; border-radius: 999px;
+  }
+  .chip .arw { color: var(--cyan); margin: 0 2px; }
+  .cta-row { position: relative; display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+  .btn {
+    font-family: "Space Grotesk", sans-serif; font-weight: 600; font-size: 15px;
+    padding: 14px 26px; border-radius: 999px; transition: transform .15s, box-shadow .15s; cursor: pointer;
+  }
+  .btn-primary { background: var(--cyan); color: var(--navy-900); }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 10px 28px rgba(34,211,238,.4); }
+  .btn-ghost { background: transparent; color: var(--white); border: 1px solid var(--border); }
+  .btn-ghost:hover { border-color: var(--cyan); color: var(--cyan); }
+
+  /* ---------- Sections ---------- */
+  section.block { padding: 62px 0; border-top: 1px solid rgba(255,255,255,0.05); }
+  .section-head { text-align: center; max-width: 640px; margin: 0 auto 44px; }
+  .section-head h2 { font-size: clamp(24px, 4.5vw, 34px); font-weight: 700; }
+  .section-head p { color: var(--muted); margin-top: 12px; font-size: 16px; }
+
+  /* Problem / solution split */
+  .split { display: grid; grid-template-columns: 1fr; gap: 18px; }
+  .panel { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 26px; }
+  .panel h3 { font-size: 18px; margin-bottom: 12px; display: flex; align-items: center; gap: 9px; }
+  .panel.problem h3 { color: #ff8b8b; }
+  .panel.solution h3 { color: var(--cyan); }
+  .panel ul { list-style: none; display: flex; flex-direction: column; gap: 11px; }
+  .panel li { color: var(--muted); font-size: 15px; padding-left: 26px; position: relative; }
+  .panel.problem li::before { content: "✕"; position: absolute; left: 0; color: #ff8b8b; font-weight: 700; }
+  .panel.solution li::before { content: "✓"; position: absolute; left: 0; color: var(--cyan); font-weight: 700; }
+
+  /* Pipeline steps */
+  .steps { display: grid; grid-template-columns: 1fr; gap: 14px; counter-reset: step; }
+  .step {
+    background: var(--card); border: 1px solid var(--border); border-radius: var(--radius);
+    padding: 22px 22px 22px 66px; position: relative;
+  }
+  .step::before {
+    counter-increment: step; content: counter(step);
+    position: absolute; left: 20px; top: 22px; width: 32px; height: 32px;
+    display: flex; align-items: center; justify-content: center;
+    font-family: "Space Grotesk", sans-serif; font-weight: 700; font-size: 15px;
+    color: var(--navy-900); background: var(--cyan); border-radius: 50%;
+  }
+  .step h3 { font-size: 17px; margin-bottom: 5px; }
+  .step p { color: var(--muted); font-size: 14.5px; }
+  .step .tag { display: inline-block; margin-top: 9px; font-size: 11.5px; font-weight: 600; letter-spacing: .04em;
+    text-transform: uppercase; color: var(--cyan); background: var(--cyan-dim); padding: 3px 9px; border-radius: 6px; }
+
+  /* Included grid */
+  .grid { display: grid; grid-template-columns: 1fr; gap: 14px; }
+  .feature { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 22px; }
+  .feature .ico { font-size: 22px; margin-bottom: 10px; }
+  .feature h3 { font-size: 16px; margin-bottom: 6px; }
+  .feature p { color: var(--muted); font-size: 14.5px; }
+
+  /* Pricing */
+  .pricing { display: grid; grid-template-columns: 1fr; gap: 16px; max-width: 720px; margin: 0 auto; }
+  .price-card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 30px; text-align: center; position: relative; }
+  .price-card.featured { border-color: var(--cyan); box-shadow: 0 0 0 1px var(--cyan), 0 18px 50px rgba(34,211,238,.12); }
+  .price-card .label { font-size: 13px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
+  .price-card .amount { font-family: "Space Grotesk", sans-serif; font-size: 44px; font-weight: 700; margin: 12px 0 4px; }
+  .price-card .amount .per { font-size: 16px; color: var(--muted); font-weight: 500; }
+  .price-card .desc { color: var(--muted); font-size: 14.5px; margin-bottom: 6px; }
+  .price-note { text-align: center; color: var(--muted-2); font-size: 13px; margin-top: 20px; }
+
+  /* Timeline */
+  .timeline { max-width: 640px; margin: 0 auto; display: flex; flex-direction: column; gap: 4px; }
+  .tl-item { display: flex; gap: 16px; padding: 4px 0; }
+  .tl-marker { display: flex; flex-direction: column; align-items: center; }
+  .tl-dot { width: 14px; height: 14px; border-radius: 50%; background: var(--cyan); margin-top: 6px; flex-shrink: 0; }
+  .tl-line { width: 2px; flex: 1; background: var(--border); }
+  .tl-item:last-child .tl-line { display: none; }
+  .tl-body { padding-bottom: 22px; }
+  .tl-body h3 { font-size: 16px; }
+  .tl-body .when { font-size: 12.5px; font-weight: 600; color: var(--cyan); text-transform: uppercase; letter-spacing: .06em; }
+  .tl-body p { color: var(--muted); font-size: 14.5px; margin-top: 3px; }
+
+  /* CTA band */
+  .cta-band { text-align: center; background: linear-gradient(160deg, var(--navy-700), var(--navy-800)); border: 1px solid var(--border); border-radius: 22px; padding: 46px 26px; margin: 10px 0; }
+  .cta-band h2 { font-size: clamp(23px, 4.5vw, 32px); }
+  .cta-band p { color: var(--muted); margin: 12px auto 26px; max-width: 480px; }
+
+  /* Footer */
+  footer { padding: 40px 0 54px; border-top: 1px solid rgba(255,255,255,0.06); text-align: center; color: var(--muted-2); font-size: 13.5px; }
+  footer .brand { justify-content: center; margin-bottom: 10px; font-size: 18px; }
+  footer a { color: var(--muted); }
+
+  /* Reveal on scroll */
+  .reveal { opacity: 0; transform: translateY(18px); transition: opacity .6s ease, transform .6s ease; }
+  .reveal.in { opacity: 1; transform: none; }
+  @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; transition: none; } html { scroll-behavior: auto; } }
+
+  /* Larger screens */
+  @media (min-width: 720px) {
+    .split { grid-template-columns: 1fr 1fr; }
+    .steps { grid-template-columns: 1fr 1fr; }
+    .grid { grid-template-columns: 1fr 1fr; }
+    .pricing { grid-template-columns: 1fr 1fr; }
+  }
+  @media (min-width: 900px) {
+    .grid { grid-template-columns: 1fr 1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap nav-inner">
+    <div class="brand"><span class="dot"></span>Smartify<span class="ai">.ai</span></div>
+    <a class="nav-cta" href="#next">Get Started</a>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="wrap">
+    <span class="eyebrow">Proposal · HubSpot → ProCare Automation</span>
+    <h1>Every HubSpot lead,<br /><span class="grad">registered in ProCare</span><br />— hands-free.</h1>
+    <p class="sub">A fully managed pipeline that captures each form submission and completes the ProCare Connect registration automatically. No copy-paste, no missed leads, no busywork.</p>
+    <div class="flow-mini">
+      <span class="chip">HubSpot Form</span>
+      <span class="chip"><span class="arw">→</span> Email Relay</span>
+      <span class="chip"><span class="arw">→</span> n8n Parser</span>
+      <span class="chip"><span class="arw">→</span> Auto-Registration</span>
+    </div>
+    <div class="cta-row">
+      <a class="btn btn-primary" href="#next">Approve &amp; Kick Off</a>
+      <a class="btn btn-ghost" href="#how">See How It Works</a>
+    </div>
+  </div>
+</section>
+
+<!-- PROBLEM / SOLUTION -->
+<section class="block">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <h2>The gap we're closing</h2>
+      <p>Your HubSpot plan can't fire webhooks, so new registrations don't flow into ProCare on their own. Today that means manual re-entry — every single lead.</p>
+    </div>
+    <div class="split">
+      <div class="panel problem reveal">
+        <h3>Today — manual &amp; fragile</h3>
+        <ul>
+          <li>Every lead is re-typed into ProCare Connect by hand</li>
+          <li>HubSpot's plan can't send webhooks to trigger automation</li>
+          <li>ProCare has no public API to push data into</li>
+          <li>Delays and typos cost enrollments and staff hours</li>
+        </ul>
+      </div>
+      <div class="panel solution reveal">
+        <h3>With Smartify — automated end-to-end</h3>
+        <ul>
+          <li>Form submissions register in ProCare within minutes</li>
+          <li>Works entirely within your current HubSpot plan</li>
+          <li>A browser bot fills the real ProCare form — no API needed</li>
+          <li>Zero manual entry; staff focus on families, not data</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="block" id="how">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <h2>How it works</h2>
+      <p>Four steps, fully owned and operated by Smartify. You do nothing after a form is submitted.</p>
+    </div>
+    <div class="steps">
+      <div class="step reveal">
+        <h3>Lead submits your HubSpot form</h3>
+        <p>The parent completes registration on your existing HubSpot form — nothing changes for them.</p>
+        <span class="tag">No plan upgrade needed</span>
+      </div>
+      <div class="step reveal">
+        <h3>Submission is relayed by email</h3>
+        <p>HubSpot emails the submission to a dedicated Smartify address — the reliable path around the webhook limitation.</p>
+        <span class="tag">Works on any plan</span>
+      </div>
+      <div class="step reveal">
+        <h3>n8n parses &amp; reformats the data</h3>
+        <p>Our self-hosted automation layer reads the email, extracts each field, and maps it to ProCare's exact requirements.</p>
+        <span class="tag">Self-hosted &amp; monitored</span>
+      </div>
+      <div class="step reveal">
+        <h3>Browser bot completes the registration</h3>
+        <p>A Playwright bot opens ProCare Connect and fills the registration form field-by-field — accurately, every time.</p>
+        <span class="tag">Human-free submission</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT'S INCLUDED -->
+<section class="block">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <h2>What Smartify delivers</h2>
+      <p>One accountable partner for the whole pipeline — built, hosted, monitored, and maintained by us.</p>
+    </div>
+    <div class="grid">
+      <div class="feature reveal"><div class="ico">🔧</div><h3>Full build &amp; setup</h3><p>Email relay, n8n workflows, and the ProCare browser bot — configured to your exact form and fields.</p></div>
+      <div class="feature reveal"><div class="ico">☁️</div><h3>Fully managed hosting</h3><p>We host and run every component. Nothing to install, no servers for your team to babysit.</p></div>
+      <div class="feature reveal"><div class="ico">🛡️</div><h3>Monitoring &amp; alerts</h3><p>We watch every run. If ProCare changes their form, we catch it and fix it before it costs you leads.</p></div>
+      <div class="feature reveal"><div class="ico">🔁</div><h3>Ongoing maintenance</h3><p>The browser bot is kept in step with ProCare's site updates as part of your monthly retainer.</p></div>
+      <div class="feature reveal"><div class="ico">📊</div><h3>Delivery visibility</h3><p>Clear confirmation each lead reached ProCare, with a fallback path if anything ever needs a second look.</p></div>
+      <div class="feature reveal"><div class="ico">🤝</div><h3>One point of contact</h3><p>End-to-end ownership. You email one team — us — for anything about the pipeline.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="block" id="pricing">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <h2>Investment</h2>
+      <p>A one-time build to stand it up, then a simple monthly retainer to keep it running flawlessly.</p>
+    </div>
+    <div class="pricing">
+      <div class="price-card reveal">
+        <div class="label">One-time build</div>
+        <div class="amount" data-price="build">$2,500</div>
+        <div class="desc">Design, build, and launch of the complete pipeline — email relay, n8n workflows, and the ProCare bot, tuned to your form.</div>
+      </div>
+      <div class="price-card featured reveal">
+        <div class="label">Managed monthly</div>
+        <div class="amount" data-price="monthly">$500<span class="per">/mo</span></div>
+        <div class="desc">Hosting, monitoring, alerts, and ongoing maintenance of the browser bot as ProCare evolves. Cancel anytime.</div>
+      </div>
+    </div>
+    <p class="price-note">Pricing assumes no CAPTCHA on the live ProCare registration form. Step one of the build is a short spike to confirm this — if ProCare enforces a CAPTCHA we can't disable, we'll flag it before any work proceeds.</p>
+  </div>
+</section>
+
+<!-- TIMELINE -->
+<section class="block">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <h2>Path to live</h2>
+      <p>From approval to your first automated registration in roughly two weeks.</p>
+    </div>
+    <div class="timeline">
+      <div class="tl-item reveal"><div class="tl-marker"><div class="tl-dot"></div><div class="tl-line"></div></div><div class="tl-body"><div class="when">Day 1</div><h3>Kickoff &amp; feasibility spike</h3><p>Confirm the ProCare form has no blocking CAPTCHA and map your HubSpot fields.</p></div></div>
+      <div class="tl-item reveal"><div class="tl-marker"><div class="tl-dot"></div><div class="tl-line"></div></div><div class="tl-body"><div class="when">Days 2–7</div><h3>Build the pipeline</h3><p>Stand up the email relay, n8n parsing, and the ProCare browser bot end-to-end.</p></div></div>
+      <div class="tl-item reveal"><div class="tl-marker"><div class="tl-dot"></div><div class="tl-line"></div></div><div class="tl-body"><div class="when">Days 8–11</div><h3>Test with real submissions</h3><p>Run live samples through the full flow and verify accurate ProCare registrations.</p></div></div>
+      <div class="tl-item reveal"><div class="tl-marker"><div class="tl-dot"></div><div class="tl-line"></div></div><div class="tl-body"><div class="when">Days 12–14</div><h3>Go live &amp; hand to managed care</h3><p>Switch on automation and move into ongoing monitoring and maintenance.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="block" id="next">
+  <div class="wrap">
+    <div class="cta-band reveal">
+      <h2>Ready to automate your registrations?</h2>
+      <p>Approve this proposal and we'll start the feasibility spike this week. Questions first? We're happy to walk through any part of it.</p>
+      <div class="cta-row">
+        <a class="btn btn-primary" href="mailto:cooper@smartifyai.com?subject=HubSpot%20%E2%86%92%20ProCare%20Proposal%20%E2%80%94%20Let's%20go">Approve &amp; Kick Off</a>
+        <a class="btn btn-ghost" href="mailto:cooper@smartifyai.com?subject=Question%20about%20the%20ProCare%20proposal">Ask a Question</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="brand"><span class="dot"></span>Smartify<span class="ai">.ai</span></div>
+    <p>End-to-End AI. Driven by Results.</p>
+    <p style="margin-top:8px;"><a href="mailto:cooper@smartifyai.com">cooper@smartifyai.com</a> · smartifyai.com</p>
+  </div>
+</footer>
+
+<script>
+  // Scroll reveal
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((e) => { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } });
+  }, { threshold: 0.12 });
+  document.querySelectorAll(".reveal").forEach((el) => io.observe(el));
+</script>
+</body>
+</html>
