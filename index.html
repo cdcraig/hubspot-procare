@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="robots" content="noindex" />
+<title>Smartify — Proposal Generator</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --bg:#0b0b0f; --card:#17171f; --border:#2b2b36;
+    --pink:#de4c87; --purple:#9b87fe; --white:#f6f5f8; --muted:#a3a1ae;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{height:100%}
+  body{
+    background:var(--bg); color:var(--white);
+    font-family:Inter,system-ui,sans-serif; -webkit-font-smoothing:antialiased;
+    display:flex; align-items:center; justify-content:center; padding:32px;
+    min-height:100vh; text-align:center; overflow:hidden; position:relative;
+  }
+  body::before{
+    content:""; position:absolute; inset:0; z-index:0;
+    background:radial-gradient(60% 50% at 50% 0%, rgba(222,76,135,.16), transparent 70%),
+               radial-gradient(50% 40% at 50% 100%, rgba(155,135,254,.14), transparent 70%);
+  }
+  .wrap{position:relative; z-index:1; max-width:560px}
+  .eyebrow{
+    display:inline-block; font-size:13px; letter-spacing:.14em; text-transform:uppercase;
+    color:var(--muted); border:1px solid var(--border); border-radius:999px;
+    padding:7px 16px; margin-bottom:28px;
+  }
+  h1{
+    font-family:"Space Grotesk",sans-serif; font-weight:700; line-height:1.02;
+    letter-spacing:-0.04em; font-size:clamp(38px,8vw,72px);
+  }
+  h1 .grad{
+    background:linear-gradient(100deg,var(--pink),var(--purple));
+    -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent;
+  }
+  p.sub{margin:24px auto 0; max-width:460px; font-size:clamp(16px,2.4vw,19px); line-height:1.55; color:var(--muted)}
+  .foot{margin-top:40px; font-size:14px; color:var(--muted)}
+  .foot a{color:var(--pink); text-decoration:none; font-weight:500}
+  .foot a:hover{text-decoration:underline}
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <span class="eyebrow">Smartify</span>
+    <h1>Proposal<br /><span class="grad">Generator</span></h1>
+    <p class="sub">Tailored, end-to-end automation proposals — one link per client. Each engagement lives at its own private address.</p>
+    <p class="foot">Have a proposal link? Open it directly. Questions — <a href="mailto:cooper@smartifyai.com">cooper@smartifyai.com</a></p>
+  </div>
+</body>
+</html>
