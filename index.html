@@ -157,6 +157,13 @@
   .price-card .amount .per { font-size: 17px; color: var(--muted); font-weight: 500; letter-spacing: 0; }
   .price-card .desc { color: var(--muted); font-size: 14.5px; margin-bottom: 6px; }
   .price-note { text-align: center; color: var(--muted-2); font-size: 13px; margin-top: 20px; }
+  .savings { max-width: 720px; margin: 22px auto 0; text-align: center; padding: 22px 26px;
+    border-radius: var(--radius); border: 1px solid var(--border);
+    background: linear-gradient(135deg, rgba(222,76,135,.10), rgba(155,135,254,.10)); }
+  .savings-tag { display: inline-block; font-size: 11px; font-weight: 600; letter-spacing: .18em;
+    text-transform: uppercase; color: var(--cyan); margin-bottom: 8px; }
+  .savings p { color: var(--white); font-size: clamp(15px, 2vw, 17px); line-height: 1.55; margin: 0; }
+  .savings strong { color: var(--cyan); font-weight: 600; }
 
   /* Timeline */
   .timeline { max-width: 640px; margin: 0 auto; display: flex; flex-direction: column; gap: 4px; }
@@ -320,9 +327,13 @@
       </div>
       <div class="price-card featured reveal">
         <div class="label">Managed monthly</div>
-        <div class="amount" data-price="monthly">$300<span class="per">/mo</span></div>
-        <div class="desc">Hosting, monitoring, alerts, and ongoing maintenance of the browser bot as ProCare evolves. Cancel anytime.</div>
+        <div class="amount" data-price="monthly">$150<span class="per">/mo</span></div>
+        <div class="desc">Covers hosting, monitoring, and keeping the pipeline running — including fixing any breakage when ProCare changes their form. New features or enhancements are quoted separately. Cancel anytime.</div>
       </div>
+    </div>
+    <div class="savings reveal">
+      <span class="savings-tag">Cost comparison</span>
+      <p>Automating this inside HubSpot would mean a <strong>Data Hub seat at ~$750/month</strong>. Your fully managed service does the same job for <strong>$150/month</strong> — saving roughly <strong>$600/month (~$7,200/year)</strong>.</p>
     </div>
     <p class="price-note">Pricing assumes no CAPTCHA on the live ProCare registration form. Step one of the build is a short spike to confirm this — if ProCare enforces a CAPTCHA we can't disable, we'll flag it before any work proceeds.</p>
   </div>
@@ -363,6 +374,7 @@
     <div class="brand"><span class="dot"></span>Smartify<span class="ai">.ai</span></div>
     <p>End-to-End AI. Driven by Results.</p>
     <p style="margin-top:8px;"><a href="mailto:cooper@smartifyai.com">cooper@smartifyai.com</a> · smartifyai.com</p>
+    <p style="margin-top:8px;">Cooper Craig on <a href="https://www.upwork.com/freelancers/coopercraig" target="_blank" rel="noopener">Upwork</a></p>
   </div>
 </footer>
 
